@@ -1,0 +1,22 @@
+.normal{
+   color: red;
+}
+/*全局样式*/
+:global(.title){
+   color: green;
+}
+/*Composing CSS Classes*/
+.backColor{
+   background-color: #c4c4c4;
+}
+   /*a selector could inherit another selector's rules*/
+.composeClass{
+   composes: backColor;
+   width: 200px;
+   height: 200px;
+   color: #ffffff;
+}
+/*Import Other Modules*/
+.importOtherClass{
+   composes: testColor from './another.css';
+}
