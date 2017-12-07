@@ -16,8 +16,8 @@ var webpackConfig = require('./dependencies/webpack.js');
 var cssMinify = require('./dependencies/cssMinify.js');
 var postcss = require('gulp-postcss');
 /*使用postcss
-1.gulpfile文件添加gulp-postcss，执行postcss任务；
-2.webpack中添加postcss-loader*/
+1.webpack中添加postcss-loader解析scss文件，不需要gulpfile中处理；
+如果需要导入编译后的文件可以使用postcss解析*/
 var env = 'development';
 
 var runServer = function() {
@@ -50,13 +50,14 @@ gulp.task('scss2css', function(cb) {
         .pipe(cssMinify({}, env))
         .pipe(gulp.dest(conf.dist));
 });
+
 gulp.task('postcss', function(){
-   
    return gulp.src('./public/scripts/**/*.scss')//gulp.src('./public/scss/**/*.scss')
             ///.pipe(sass().on('error', sass.logError))
             .pipe(postcss())
             .pipe(gulp.dest('./public/scripts/'));
 })
+
 gulp.task('webpack', function(cb) {
 
     webpack(webpackConfig(devConf.webpackjs, env), function(err, stats) {
@@ -88,7 +89,7 @@ gulp.task('dev', function() {
 });
 
 gulp.task('common', function(cb) {
-    runSequence(['del'], ['copy:img'], ['copy:assets'], ['scss2css'], ['webpack'], ['postcss'],  function() {
+    runSequence(['del'], ['copy:img'], ['copy:assets'], ['scss2css'], ['webpack'], /*['postcss'],*/  function() {
         cb();
     });
 });

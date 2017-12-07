@@ -57,23 +57,27 @@ var getConfig = function(env) {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 use: [{
-                    loader: 'style-loader?modules'
+                    loader: 'style-loader'
                 }, {
-                    loader: 'css-loader?modules'
+                    loader: 'css-loader',
+                    options: {
+                        modules: true
+                    }
                 }, {
+                    //使用postcss解析，不用sass解析
                    loader: 'postcss-loader',
                    options: {
-                      config: {
-                         path: 'postcss.config.js'  // 这个得在项目根目录创建此文件
-                      }
+                       sourceMap: true,
+                       config: {
+                          path: 'postcss.config.js'  // 这个得在项目根目录创建此文件
+                       }
                    }
-                },{
-                    loader: 'sass-loader?modules'/*,
+                }/*,{
+                    loader: 'sass-loader',
                     options: {
-                        indentedSyntax: true,
-                        includePaths: [path.resolve('./public/scss/')]
-                    }*/
-                }]
+                       sourceMap: true,
+                    }
+                }*/]
             }, {
                 test: /\.js$/,
                 exclude:  /(node_modules\/(?!whs)|bower_components)/,

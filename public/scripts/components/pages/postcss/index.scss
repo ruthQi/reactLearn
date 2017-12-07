@@ -1,74 +1,77 @@
-.test{
+/* .test{
    background-color: red;
-}
+} */
 /*autoprefixer*/
 .autoprefixer{
-   display: -webkit-box;
-   display: -ms-flexbox;
    display: flex;
-   -webkit-transform: translate3d(0,0,0);
-           transform: translate3d(0,0,0);
+   transform: translate3d(0,0,0);
 }
+
 /*cssnext*/
+
 .cssnext{
-   background: #ff0000;
-   background: rgba(255, 0, 0, 0.9);
+   background: color(red alpha(-10%));
 }
+
 /*precss*/
+
 .precss{
-      background: green 
+   @if 3 < 5{
+      background: green;
+   }
+   @else{
+      background: blue;
+   } 
 }
+
 /*===========================================*/
 /*autoprefixer*/
-@-webkit-keyframes animationExample {
-   from { width: 0; }
-   to { width: 100%; }
-}
 @keyframes animationExample {
    from { width: 0; }
    to { width: 100%; }
 }
 .animateThis {
-   -webkit-animation: animationExample 2s;
-           animation: animationExample 2s; 
-   display: -webkit-box; 
-   display: -ms-flexbox; 
+   animation: animationExample 2s; 
    display: flex; 
 }
+
 /*postcss-will-change*/
 .thisWillChange{
-   -webkit-backface-visibility: hidden;
-           backface-visibility: hidden;
    will-change: transform;
 }
+
 /*postcss-color-rgba-fallback对不支持rgba的浏览器添加降级处理*/
 .rgbaFallBack{
-   background: #c82814;
    background: rgba(200,40,20,0.6);
 }
+
 /*postcss-opacity:为不支持opacity的浏览器添加滤镜属性*/
 .opacityFallBack{
-   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
    opacity: 0.5;
 }
+
 /*postcss-pseudoelements:将伪元素的::转换为:;IE8中不支持伪元素，会转换为一个:*/
-.element:before{
+.element::before{
    content: '';
 }
+
 /*使用vm为vmin降级：IE9不支持vmin,postcss-vmin可以转化为vm*/
 .vmFallBack{
-   width: 50vm;
    width: 50vmin;
 }
+
 /*为rem添加px做降级处理：IE8一直不支持rem,IE9和IE10不支持伪元素和font属性，pixrem可自动为rem添加px属性*/
 .remFallBack{
-   height: 32px;
    height: 2rem;
-   font: 32px Arial;
    font: 2rem Arial;
 }
-.remFallBack:before{
+.remFallBack::before{
    content: '';
-   line-height: 16px;
    line-height: 1rem;
+}
+.testClass{
+   color: red;
+   &:hover{
+      color: green;
+   }
 }

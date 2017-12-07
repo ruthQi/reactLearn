@@ -10,7 +10,7 @@ class PostCSS extends Component{
    render(){
       return(
          <div className={style.test}>
-            测试
+            <a className={style.testClass}>测试</a>
          </div>
       )
    }
