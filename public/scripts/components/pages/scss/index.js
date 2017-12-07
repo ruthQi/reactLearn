@@ -4,7 +4,7 @@
 import React, {Component} from 'react';
 import style from './index.scss';
 //var style = require('./index.scss');
-console.log(style)
+//使用cssMoudles的模式必须在webpack中添加?modules才是使用cssModule的方式
 
 class ScssModules extends Component{
    render(){

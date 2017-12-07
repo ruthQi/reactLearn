@@ -15,7 +15,9 @@ var spriteConfig = require('./dependencies/sprite.js');
 var webpackConfig = require('./dependencies/webpack.js');
 var cssMinify = require('./dependencies/cssMinify.js');
 var postcss = require('gulp-postcss');
-
+/*使用postcss
+1.gulpfile文件添加gulp-postcss，执行postcss任务；
+2.webpack中添加postcss-loader*/
 var env = 'development';
 
 var runServer = function() {
