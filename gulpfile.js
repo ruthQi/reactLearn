@@ -14,6 +14,7 @@ var devConf = require('./dependencies/conf.js');
 var spriteConfig = require('./dependencies/sprite.js');
 var webpackConfig = require('./dependencies/webpack.js');
 var cssMinify = require('./dependencies/cssMinify.js');
+var postcss = require('gulp-postcss');
 
 var env = 'development';
 
@@ -47,9 +48,14 @@ gulp.task('scss2css', function(cb) {
         .pipe(cssMinify({}, env))
         .pipe(gulp.dest(conf.dist));
 });
-
+gulp.task('postcss', function(){
+   
+   return gulp.src('./public/scripts/**/*.scss')//gulp.src('./public/scss/**/*.scss')
+            ///.pipe(sass().on('error', sass.logError))
+            .pipe(postcss())
+            .pipe(gulp.dest('./public/scripts/'));
+})
 gulp.task('webpack', function(cb) {
-
 
     webpack(webpackConfig(devConf.webpackjs, env), function(err, stats) {
         cb();
@@ -80,7 +86,7 @@ gulp.task('dev', function() {
 });
 
 gulp.task('common', function(cb) {
-    runSequence(['del'], ['copy:img'], ['copy:assets'], ['scss2css'], ['webpack'], function() {
+    runSequence(['del'], ['copy:img'], ['copy:assets'], ['scss2css'], ['webpack'], ['postcss'],  function() {
         cb();
     });
 });

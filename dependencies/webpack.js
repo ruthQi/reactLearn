@@ -57,15 +57,22 @@ var getConfig = function(env) {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 use: [{
-                    loader: 'style-loader'
+                    loader: 'style-loader?modules'
                 }, {
-                    loader: 'css-loader'
+                    loader: 'css-loader?modules'
                 }, {
-                    loader: 'sass-loader',
+                   loader: 'postcss-loader',
+                   options: {
+                      config: {
+                         path: 'postcss.config.js'  // 这个得在项目根目录创建此文件
+                      }
+                   }
+                },{
+                    loader: 'sass-loader?modules'/*,
                     options: {
                         indentedSyntax: true,
                         includePaths: [path.resolve('./public/scss/')]
-                    }
+                    }*/
                 }]
             }, {
                 test: /\.js$/,

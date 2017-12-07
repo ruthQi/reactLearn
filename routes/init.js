@@ -8,4 +8,12 @@ module.exports = function(app) {
       res.render('pages/cssModules');
    });
 
+   app.use('/postcss', function(req, res, next) {
+      res.render('pages/postcss');
+   });
+
+   app.use(('/scss'), function(req, res, next) {
+      res.render('pages/scss');
+   })
+
 };

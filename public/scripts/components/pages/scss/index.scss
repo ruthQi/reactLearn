@@ -9,14 +9,17 @@
 .backColor{
    background-color: #c4c4c4;
 }
-   /*a selector could inherit another selector's rules*/
+/*a selector could inherit another selector's rules*/
 .composeClass{
-   composes: backColor;
+   background-color: #c4c4c4;
    width: 200px;
    height: 200px;
    color: #ffffff;
 }
 /*Import Other Modules*/
 .importOtherClass{
-   composes: testColor from './another.css';
+   background-color: blue;
+   width: 300px;
+   height: 300px;
+   color: gray;
 } 
