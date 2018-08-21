@@ -34,9 +34,7 @@ var getConfig = function(env) {
     return {
         cache: true,
         context: path.join(process.cwd(), ''),
-        entry: {
-            'index': ['./public/scripts/pages/index.js']
-        },
+        entry: {},
         output: {
             path: path.join(process.cwd(), './public/dist/scripts/pages'),
             filename: '[name].js',
@@ -44,7 +42,7 @@ var getConfig = function(env) {
         },
         externals: {},
         module: {
-            loaders: [{
+            rules: [{
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loader: "url-loader",
                 query: {}
@@ -127,6 +125,7 @@ module.exports = function(conf, env) {
     var filelist = [],
         entry = {};
     var _path = path.resolve(process.cwd(), conf.src);
+    //console.log(_path)
     utils.getFiles(_path, function(_path) {
         filelist.push(_path);
     });
@@ -135,7 +134,6 @@ module.exports = function(conf, env) {
         entry[arr[1]] = ['.' + arr[0]];
     });
     filelist = [];
-
     return utils.extend(getConfig(env), {
         entry: entry
     });
