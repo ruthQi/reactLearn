@@ -46,6 +46,7 @@ var getConfig = function(env) {
                 //CSS-loader's default hash algorithm is [hash:base64]
                 //loader: 'style-loader!css-loader?modules'
                 use: plugin.extract({ use: { loader: 'css-loader', options: { modules: true } }, fallback: 'style-loader'}),
+                //使用以下方式修改生成的文件名称
                 //loader: 'style-loader!css-loader?modules&localIdentName=[path][name]---[local]---[hash:base64:5]'
             }, {
                 test: /\.scss$/,
