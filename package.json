@@ -55,7 +55,7 @@
     "css-loader": "^0.26.1",
     "cssnext": "^1.8.4",
     "del": "^2.2.2",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^0.10.1",
     "ftp": "^0.3.10",
     "gulp": "^3.9.1",

@@ -3,17 +3,12 @@
 var path = require('path');
 var webpack = require('webpack');
 var utils = require('./utils.js');
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var getConfig = function(env) {
     var isDev = env == 'development';
-    // var plugins = [new webpack.DllPlugin({
-    //         path: path.join(process.cwd(), './public/dist/scripts/pages', 'common-manifest.json'),
-    //         name: '[name].js'
-    //     })
-    // ];
-    // var plugins = [new ExtractTextPlugin('[name].scss')];
-    var plugins = [];
+    //使用cssModules时抽离css
+    const plugin = new ExtractTextPlugin('../../styles/pages/[name].css');//new ExtractTextPlugin('../../styles/pages/[name].css')
     if (!isDev) {
         plugins = plugins.concat([
             new webpack.optimize.UglifyJsPlugin({
@@ -50,7 +45,8 @@ var getConfig = function(env) {
                 test: /\.css$/,
                 //CSS-loader's default hash algorithm is [hash:base64]
                 //loader: 'style-loader!css-loader?modules'
-                loader: 'style-loader!css-loader?modules&localIdentName=[path][name]---[local]---[hash:base64:5]'
+                use: plugin.extract({ use: { loader: 'css-loader', options: { modules: true } }, fallback: 'style-loader'}),
+                //loader: 'style-loader!css-loader?modules&localIdentName=[path][name]---[local]---[hash:base64:5]'
             }, {
                 test: /\.scss$/,
                 exclude: /node_modules/,
@@ -116,7 +112,7 @@ var getConfig = function(env) {
                 vue: 'vue/dist/vue.common.js'
             }
         },
-        plugins: plugins
+        plugins: [plugin]
     };
 };
 
