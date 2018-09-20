@@ -12,8 +12,13 @@ module.exports = function(app) {
       res.render('pages/postcss');
    });
 
-   app.use(('/scss'), function(req, res, next) {
+   app.use('/scss', function(req, res, next) {
       res.render('pages/scss');
+   });
+
+   //高阶组件
+   app.use('/higher', function(req, res, next){
+      res.render('pages/higher')
    })
 
 };
